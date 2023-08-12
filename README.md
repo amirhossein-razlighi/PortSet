@@ -35,8 +35,8 @@ The dataset also contains `synthesized` part which is the images that are create
 Here you can see some of the synthesized data and how they look like:
 
 <div style="text-align:center">
-<img src="./readme_images/4_synth.jpg" width="50%" height="auto" alt="Synthesized image with 3D model of monkey" title="Synthesized image with 3D model of monkey"/>
-<img src="./readme_images/5_synth.jpg" width="49%" height="auto" alt="Synthesized image with 3D model of Donut" title="Synthesized image with 3D model of Donut"/>
+<img src="./readme_images/4_orig.jpg" width="50%" height="auto" alt="Synthesized image with 3D model of monkey" title="Synthesized image with 3D model of monkey"/>
+<img src="./readme_images/5_orig.jpg" width="49%" height="auto" alt="Synthesized image with 3D model of Donut" title="Synthesized image with 3D model of Donut"/>
 </div>
 
 
