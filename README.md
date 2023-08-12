@@ -7,6 +7,11 @@ The dataset contains xxx images. 756 of them are realworld images (marked with `
 The dataset consists of different imaging conditions and different camera positions, for sake of generalization. Also the pictures contain **indoor** and **outdoor** scenes. For example, you can see a set of input_image + blurred_image in 2 different conditions, below:
 
 <div style="text-align:center">
-<img src="./readme_images/0_orig.jpg" width="300" height="300" alt="Original Image" title="Original Image" />
-<img src="./readme_images/0_blur.jpg" width="300" height="300" alt="Blurred Image" title="Blurred Image" />
+<img src="./readme_images/0_orig.jpg" width="50%" height="auto" alt="Original Image" title="Original Image" />
+<img src="./readme_images/0_blur.jpg" width="50%" height="auto" alt="Blurred Image" title="Blurred Image" />
+</div>
+
+<div style="text-align:center">
+<img src="./readme_images/1_orig.jpg" width="50%" height="auto" alt="Original Image" title="Original Image" />
+<img src="./readme_images/1_blur.jpg" width="50%" height="auto" alt="Blurred Image" title="Blurred Image" />
 </div>
