@@ -4,37 +4,57 @@ from PIL import Image
 
 
 class PortsetDataset(data.Dataset):
-    def __init__(self, root, transform=None, target_transform=None):
+    def __init__(self, root, transform=None, target_transform=None, split="real_world"):
         self.root = root
         self.transform = transform
         self.target_transform = target_transform
         self.realworld_data, self.realworld_targets = None, None
         self.synthesized_data, self.synthesized_targets = None, None
+        self.split = split
 
     def __getitem__(self, index):
-        if not type(index) == str:
-            raise Exception(
-                "You should choose between synthesized and real_world splits!"
-            )
-        if index == "synthesized":
-            if self.synthesized_data is None:
-                self.synthesized_data, self.synthesized_targets = self.prepare_synth(
-                    self.root
-                )
-            return self.synthesized_data, self.synthesized_targets
-        elif index == "real_world":
+        # We have 2 splits "real_world" and "synthesized". Each of these contain 2 folders "Input_images" and "GT_Images"
+        # We will return the image from "Input_images" as data and the image from "GT_Images" as target
+        if self.split == "real_world":
             if self.realworld_data is None:
                 self.realworld_data, self.realworld_targets = self.prepare_data(
                     self.root
                 )
-            return self.realworld_data, self.realworld_targets
-        else:
-            raise Exception(
-                "You should choose between synthesized and real_world splits!"
+            data, target = self.realworld_data[index], self.realworld_targets[index]
+        elif self.split == "synthesized":
+            if self.synthesized_data is None:
+                self.synthesized_data, self.synthesized_targets = self.prepare_synth(
+                    self.root
+                )
+            data, target = (
+                self.synthesized_data[index],
+                self.synthesized_targets[index],
             )
+        else:
+            raise ValueError("Invalid split name.")
+
+        if self.transform is not None:
+            data = self.transform(data)
+        if self.target_transform is not None:
+            target = self.target_transform(target)
+
+        return data, target
 
     def __len__(self):
-        return len(self.realworld_data) + len(self.synthesized_data)
+        if self.split == "real_world":
+            if self.realworld_data is None:
+                self.realworld_data, self.realworld_targets = self.prepare_data(
+                    self.root
+                )
+            return len(self.realworld_data)
+        elif self.split == "synthesized":
+            if self.synthesized_data is None:
+                self.synthesized_data, self.synthesized_targets = self.prepare_synth(
+                    self.root
+                )
+            return len(self.synthesized_data)
+        else:
+            raise ValueError("Invalid split name.")
 
     def _check_exists(self):
         return os.path.exists(self.root)
@@ -43,8 +63,8 @@ class PortsetDataset(data.Dataset):
         if not self._check_exists():
             raise RuntimeError("Dataset not found.")
 
-        original_path = os.path.join(root, "Real_World", "Input_images")
-        blurred_path = os.path.join(root, "Real_World", "GT_Images")
+        original_path = os.path.join(root, "RealWorld", "Input_images")
+        blurred_path = os.path.join(root, "RealWorld", "GT_Images")
         original_images = os.listdir(original_path)
         blurred_images = os.listdir(blurred_path)
 

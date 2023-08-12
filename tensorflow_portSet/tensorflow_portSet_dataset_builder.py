@@ -38,8 +38,8 @@ class Builder(tfds.core.GeneratorBasedBuilder):
         path = dl_manager.manual_dir
         return {
             "real_world": self._generate_examples(
-                inp_path=path / "Real_World" / "Input_Images",
-                gt_path=path / "Real_World" / "GT_Images",
+                inp_path=path / "RealWorld" / "Input_Images",
+                gt_path=path / "RealWorld" / "GT_Images",
             ),
             "synthesized": self._generate_examples(
                 inp_path=path / "Synthesized" / "Input_Images",
