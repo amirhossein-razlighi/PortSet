@@ -19,8 +19,8 @@ The dataset consists of different imaging conditions and different camera positi
 Also it contains different lighting conditions (Day / Night) as you can see below:
 
 <div style="text-align:center">
-<img src="./readme_images/2_orig.jpg" width="50%" height="auto" alt="A sample image in night" title="A sample image in night" style="transform:rotate(90deg)" />
-<img src="./readme_images/3_orig.jpg" width="49%" height="auto" alt="A sample image in day" title="A sample image in day" style="transform:rotate(90deg)" />
+<img src="./readme_images/2_orig.jpg" width="50%" height="auto" alt="A sample image in night" title="A sample image in night" style="webkit-transform:rotate(90deg); transform:rotate(90deg)" />
+<img src="./readme_images/3_orig.jpg" width="49%" height="auto" alt="A sample image in day" title="A sample image in day" style="webkit-transform:rotate(90deg); transform:rotate(90deg)" />
 </div>
 
 And as you can see, it contains many different objects and scenes (the list of objects + bounding boxes will be added soon, so you can use this dataset also for object detection tasks). **Note** that all of the images are 512x512 pixels.
