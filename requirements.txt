@@ -1,0 +1,9 @@
+bpy==3.6.0
+matplotlib==3.7.2
+numpy==1.24.3
+Pillow==10.0.0
+PyWavelets==1.4.1
+tensorflow==2.13.0
+tensorflow_datasets==4.9.2
+tfds_nightly==4.9.2.dev202308100033
+torch==2.0.1
