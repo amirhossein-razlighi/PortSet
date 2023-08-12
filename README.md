@@ -46,8 +46,8 @@ Please first, download the main dataset file from [here](https://todo) and extra
 First, please do these steps to setup a pip environment (optional) and install required packages:
 
 ```
-!python3 -m venv ./venv
-!source activate ./venv/bin/activate
+python3 -m venv ./venv
+source activate ./venv/bin/activate
 ```
 ```
 pip install -r requirements.txt
