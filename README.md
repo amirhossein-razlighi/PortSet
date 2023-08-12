@@ -26,7 +26,7 @@ Also it contains different lighting conditions (Day / Night) as you can see belo
 And as you can see, it contains many different objects and scenes (the list of objects + bounding boxes will be added soon, so you can use this dataset also for object detection tasks). **Note** that all of the images are 512x512 pixels.
 
 ### Synthesis
-The dataset also contains `synthesized` part which is the images that are created in virtual 3D modelling environments (we used _blender v3.0_). The images are created using different 3D objects and different lighting conditions. The blender scenes and objects can be downloaded from [here](https:/todo). We also created a script in this repository named `blender_manager.py` which you can use to create your own synthesized data! The script is very simple to use, you can use it like this:
+The dataset also contains `synthesized` part which is the images that are created in virtual 3D modelling environments (we used _blender v3.0_). The images are created using different 3D objects and different lighting conditions. The blender scenes and objects can be downloaded from [here](https://drive.google.com/file/d/1zUMe8crN8TuBDmrM8AD2vEQ6nZeAGLlD/view?usp=share_link). We also created a script in this repository named `blender_manager.py` which you can use to create your own synthesized data! The script is very simple to use, you can use it like this:
 
 1. Create your scene in the blender.
 2. Make your camera look-at the object you want (so it keeps pointing in the right direction while the camera is rotating around the scene). You can use `add constraint` to do this.
