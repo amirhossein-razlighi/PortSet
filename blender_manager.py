@@ -24,12 +24,13 @@ for i in range(0, 360, 10):
     bpy.data.objects["Camera"].rotation_euler.z = radians(i)
     bpy.context.scene.camera = bpy.data.objects["Camera"]
 
+    # Uncomment if you want to move the sun
     # Move the sun so that it rays in the same direction as the camera
-    bpy.data.objects["Sun"].location.x = bpy.data.objects["Camera"].location.x
-    bpy.data.objects["Sun"].location.y = bpy.data.objects["Camera"].location.y
-    bpy.data.objects["Sun"].location.z = bpy.data.objects["Camera"].location.z + 5
-    bpy.data.objects["Sun"].rotation_euler.z = radians(i)
-    bpy.context.scene.world.light_settings.use_ambient_occlusion = True
+    # bpy.data.objects["Sun"].location.x = bpy.data.objects["Camera"].location.x
+    # bpy.data.objects["Sun"].location.y = bpy.data.objects["Camera"].location.y
+    # bpy.data.objects["Sun"].location.z = bpy.data.objects["Camera"].location.z + 5
+    # bpy.data.objects["Sun"].rotation_euler.z = radians(i)
+    # bpy.context.scene.world.light_settings.use_ambient_occlusion = True
 
     # Find the nearest object to camera
     nearest_object = ""
