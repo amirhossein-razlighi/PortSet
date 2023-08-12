@@ -1,7 +1,7 @@
 """tensorflow_portSet dataset."""
 
 import tensorflow_datasets as tfds
-from . import tensorflow_portSet_dataset_builder
+import tensorflow_portSet_dataset_builder
 
 
 class TensorflowPortsetTest(tfds.testing.DatasetBuilderTestCase):
@@ -9,7 +9,7 @@ class TensorflowPortsetTest(tfds.testing.DatasetBuilderTestCase):
   # TODO(tensorflow_portSet):
   DATASET_CLASS = tensorflow_portSet_dataset_builder.Builder
   SPLITS = {
-      'train': 3,  # Number of fake train example
+      'train': 1,  # Number of fake train example
       'test': 1,  # Number of fake test example
   }
 
@@ -17,7 +17,8 @@ class TensorflowPortsetTest(tfds.testing.DatasetBuilderTestCase):
   #   dl_manager.download({'some_key': 'http://a.org/out.txt', ...})
   # then the tests needs to provide the fake output paths relative to the
   # fake data directory
-  # DL_EXTRACT_RESULT = {'some_key': 'output_file1.txt', ...}
+  # DL_EXTRACT_RESULT = {'name': 'DatasetV1.0.0.zip'}
+  SKIP_CHECKSUMS = True
 
 
 if __name__ == '__main__':

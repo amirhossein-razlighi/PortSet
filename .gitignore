@@ -153,7 +153,7 @@ dmypy.json
 cython_debug/
 
 # Dataset folder
-Dataset/
+Dataset*/
 
 #DS_Store
 .DS_Store

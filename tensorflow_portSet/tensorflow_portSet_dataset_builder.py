@@ -1,6 +1,7 @@
 """tensorflow_portSet dataset."""
 
 import tensorflow_datasets as tfds
+import tensorflow as tf
 
 
 class Builder(tfds.core.GeneratorBasedBuilder):
@@ -8,42 +9,67 @@ class Builder(tfds.core.GeneratorBasedBuilder):
 
     VERSION = tfds.core.Version("1.0.0")
     RELEASE_NOTES = {
-        "1.0.0": "Initial release.",
+        "1.0.0": "Initial release of PortSet.",
     }
+
+    MANUAL_DOWNLOAD_INSTRUCTIONS = """\
+    Manual download instructions are included in https://github.com/amirhossein-razlighi/PortSet.
+    Please read the instructions carefully to download the dataset.
+    """
 
     def _info(self) -> tfds.core.DatasetInfo:
         """Returns the dataset metadata."""
-        # TODO(tensorflow_portSet): Specifies the tfds.core.DatasetInfo object
         return self.dataset_info_from_configs(
             features=tfds.features.FeaturesDict(
                 {
-                    # These are the features of your dataset like images, labels ...
                     "input_image": tfds.features.Image(shape=(None, None, 3)),
                     "blurred_image": tfds.features.Image(shape=(None, None, 3)),
                 }
             ),
-            # If there's a common (input, target) tuple from the
-            # features, specify them here. They'll be used if
-            # `as_supervised=True` in `builder.as_dataset`.
-            supervised_keys=("input_image", "blurred_image"),  # Set to `None` to disable
+            supervised_keys=(
+                "input_image",
+                "blurred_image",
+            ),
             homepage="https://github.com/amirhossein-razlighi/PortSet",
         )
 
     def _split_generators(self, dl_manager: tfds.download.DownloadManager):
         """Returns SplitGenerators."""
-        # TODO(tensorflow_portSet): Downloads the data and defines the splits
-        path = dl_manager.download_and_extract("https://todo-data-url")
-
-        # TODO(tensorflow_portSet): Returns the Dict[split names, Iterator[Key, Example]]
+        path = dl_manager.manual_dir
         return {
-            "train": self._generate_examples(path / "train_imgs"),
+            "all_data": self._generate_examples(
+                inp_path=path / "Input_Images",
+                gt_path=path / "GT_Images",
+            )
         }
 
-    def _generate_examples(self, path):
+    def _generate_examples(self, inp_path, gt_path):
         """Yields examples."""
-        # TODO(tensorflow_portSet): Yields (key, example) tuples from the dataset
-        for f in path.glob("*.jpeg"):
-            yield "key", {
-                "image": f,
-                "label": "yes",
+        for f in inp_path.glob("*.jpg"):
+            inp_img = tf.io.read_file(str(f)).numpy()
+            gt_img = tf.io.read_file(str(gt_path / f.name)).numpy()
+
+            yield f.name, {
+                "input_image": inp_img,
+                "blurred_image": gt_img,
+            }
+
+    def _generate_training(self, inp_path, gt_path):
+        """Yields examples."""
+        for f in inp_path.glob("*.jpg"):
+            inp_img = f.read_bytes()
+            gt_img = (gt_path / f.name).read_bytes()
+            yield f.name, {
+                "input_image": inp_img,
+                "blurred_image": gt_img,
+            }
+
+    def _generate_testing(self, inp_path, gt_path):
+        """Yields examples."""
+        for f in inp_path.glob("*.jpg"):
+            inp_img = f.read_bytes()
+            gt_img = (gt_path / f.name).read_bytes()
+            yield f.name, {
+                "input_image": inp_img,
+                "blurred_image": gt_img,
             }
