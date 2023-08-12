@@ -8,10 +8,10 @@ The dataset consists of different imaging conditions and different camera positi
 
 <div style="text-align:center">
 <img src="./readme_images/0_orig.jpg" width="50%" height="auto" alt="Original Image" title="Original Image" />
-<img src="./readme_images/0_blur.jpg" width="50%" height="auto" alt="Blurred Image" title="Blurred Image" />
+<img src="./readme_images/0_blur.jpg" width="49%" height="auto" alt="Blurred Image" title="Blurred Image" />
 </div>
 
 <div style="text-align:center">
 <img src="./readme_images/1_orig.jpg" width="50%" height="auto" alt="Original Image" title="Original Image" />
-<img src="./readme_images/1_blur.jpg" width="50%" height="auto" alt="Blurred Image" title="Blurred Image" />
+<img src="./readme_images/1_blur.jpg" width="49%" height="auto" alt="Blurred Image" title="Blurred Image" />
 </div>
