@@ -37,10 +37,14 @@ class Builder(tfds.core.GeneratorBasedBuilder):
         """Returns SplitGenerators."""
         path = dl_manager.manual_dir
         return {
-            "all_data": self._generate_examples(
-                inp_path=path / "Input_Images",
-                gt_path=path / "GT_Images",
-            )
+            "real_world": self._generate_examples(
+                inp_path=path / "Real_World" / "Input_Images",
+                gt_path=path / "Real_World" / "GT_Images",
+            ),
+            "synthesized": self._generate_examples(
+                inp_path=path / "Synthesized" / "Input_Images",
+                gt_path=path / "Synthesized" / "GT_Images",
+            ),
         }
 
     def _generate_examples(self, inp_path, gt_path):
@@ -49,26 +53,6 @@ class Builder(tfds.core.GeneratorBasedBuilder):
             inp_img = tf.io.read_file(str(f)).numpy()
             gt_img = tf.io.read_file(str(gt_path / f.name)).numpy()
 
-            yield f.name, {
-                "input_image": inp_img,
-                "blurred_image": gt_img,
-            }
-
-    def _generate_training(self, inp_path, gt_path):
-        """Yields examples."""
-        for f in inp_path.glob("*.jpg"):
-            inp_img = f.read_bytes()
-            gt_img = (gt_path / f.name).read_bytes()
-            yield f.name, {
-                "input_image": inp_img,
-                "blurred_image": gt_img,
-            }
-
-    def _generate_testing(self, inp_path, gt_path):
-        """Yields examples."""
-        for f in inp_path.glob("*.jpg"):
-            inp_img = f.read_bytes()
-            gt_img = (gt_path / f.name).read_bytes()
             yield f.name, {
                 "input_image": inp_img,
                 "blurred_image": gt_img,
